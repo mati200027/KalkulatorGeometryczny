@@ -1,0 +1,97 @@
+﻿@model KalkulatorGeometryczny.Models.KalkulatorModel
+
+@{
+    ViewData["Title"] = "Kalkulator geometryczny";
+}
+
+<div class="container mt-4">
+    <h1>Kalkulator pól i obwodów figur geometrycznych</h1>
+
+    <form asp-action="Index" method="post" class="mt-4">
+
+        <div class="mb-3">
+            <label class="form-label">Wybierz figurę:</label>
+            <select asp-for="Figura" class="form-select" id="figura">
+                <option value="">-- wybierz figurę --</option>
+                <option value="Kwadrat">Kwadrat</option>
+                <option value="Prostokąt">Prostokąt</option>
+                <option value="Trójkąt">Trójkąt</option>
+                <option value="Koło">Koło</option>
+            </select>
+        </div>
+
+        <div id="poleA" class="mb-3">
+            <label class="form-label">Bok A:</label>
+            <input asp-for="A" class="form-control" type="number" step="any" />
+        </div>
+
+        <div id="poleB" class="mb-3">
+            <label class="form-label">Bok B:</label>
+            <input asp-for="B" class="form-control" type="number" step="any" />
+        </div>
+
+        <div id="poleC" class="mb-3">
+            <label class="form-label">Bok C:</label>
+            <input asp-for="C" class="form-control" type="number" step="any" />
+        </div>
+
+        <div id="poleH" class="mb-3">
+            <label class="form-label">Wysokość H:</label>
+            <input asp-for="H" class="form-control" type="number" step="any" />
+        </div>
+
+        <div id="poleR" class="mb-3">
+            <label class="form-label">Promień R:</label>
+            <input asp-for="R" class="form-control" type="number" step="any" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Oblicz
+        </button>
+    </form>
+
+    @if (!string.IsNullOrEmpty(Model.Figura))
+    {
+        <div class="alert alert-success mt-4">
+            <h4>Wynik</h4>
+            <p><strong>Pole:</strong> @Math.Round(Model.Pole, 2)</p>
+            <p><strong>Obwód:</strong> @Math.Round(Model.Obwod, 2)</p>
+        </div>
+    }
+</div>
+
+<script>
+    function pokazPola() {
+        const figura = document.getElementById("figura").value;
+
+        document.getElementById("poleA").style.display = "none";
+        document.getElementById("poleB").style.display = "none";
+        document.getElementById("poleC").style.display = "none";
+        document.getElementById("poleH").style.display = "none";
+        document.getElementById("poleR").style.display = "none";
+
+        if (figura === "Kwadrat") {
+            document.getElementById("poleA").style.display = "block";
+        }
+
+        if (figura === "Prostokąt") {
+            document.getElementById("poleA").style.display = "block";
+            document.getElementById("poleB").style.display = "block";
+        }
+
+        if (figura === "Trójkąt") {
+            document.getElementById("poleA").style.display = "block";
+            document.getElementById("poleB").style.display = "block";
+            document.getElementById("poleC").style.display = "block";
+            document.getElementById("poleH").style.display = "block";
+        }
+
+        if (figura === "Koło") {
+            document.getElementById("poleR").style.display = "block";
+        }
+    }
+
+    document.getElementById("figura").addEventListener("change", pokazPola);
+
+    pokazPola();
+</script>
