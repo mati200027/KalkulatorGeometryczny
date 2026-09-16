@@ -1,10 +1,19 @@
 using Microsoft.AspNetCore.Mvc;
 using KalkulatorGeometryczny.Models;
+using System.Text;
+using System.Text.Json;
 
 namespace KalkulatorGeometryczny.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly HttpClient _httpClient;
+
+        public HomeController(IHttpClientFactory httpClientFactory)
+        {
+            _httpClient = httpClientFactory.CreateClient();
+        }
+
         [HttpGet]
         public IActionResult Index()
         {
@@ -12,32 +21,47 @@ namespace KalkulatorGeometryczny.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(KalkulatorModel model)
+        public async Task<IActionResult> Index(KalkulatorModel model)
         {
-            switch (model.Figura)
+            var json = JsonSerializer.Serialize(model);
+
+            var content = new StringContent(
+                json,
+                Encoding.UTF8,
+                "application/json"
+            );
+
+            var response = await _httpClient.PostAsync(
+                "https://localhost:7178/api/Kalkulator/oblicz",
+                content
+            );
+
+            if (response.IsSuccessStatusCode)
             {
-                case "Kwadrat":
-                    model.Pole = model.A * model.A;
-                    model.Obwod = 4 * model.A;
-                    break;
+                var odpowiedz = await response.Content.ReadAsStringAsync();
 
-                case "Prostok¹t":
-                    model.Pole = model.A * model.B;
-                    model.Obwod = 2 * model.A + 2 * model.B;
-                    break;
+                var wynik = JsonSerializer.Deserialize<WynikModel>(
+                    odpowiedz,
+                    new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
 
-                case "Trójk¹t":
-                    model.Pole = (model.A * model.H) / 2;
-                    model.Obwod = model.A + model.B + model.C;
-                    break;
-
-                case "Ko³o":
-                    model.Pole = Math.PI * model.R * model.R;
-                    model.Obwod = 2 * Math.PI * model.R;
-                    break;
+                if (wynik != null)
+                {
+                    model.Pole = wynik.Pole;
+                    model.Obwod = wynik.Obwod;
+                }
             }
 
             return View(model);
         }
+    }
+
+    public class WynikModel
+    {
+        public string Figura { get; set; } = "";
+        public double Pole { get; set; }
+        public double Obwod { get; set; }
     }
 }
