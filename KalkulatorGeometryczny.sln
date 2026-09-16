@@ -5,7 +5,7 @@ VisualStudioVersion = 17.12.35707.178 d17.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KalkulatorGeometryczny", "KalkulatorGeometryczny.csproj", "{F5FCD5F7-1A47-4548-A720-E7516462D3A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KalkulatorBackend", "..\KalkulatorBackend\KalkulatorBackend.csproj", "{23193DA3-4032-40F1-BD9A-C72A4181B97E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KalkulatorBackend", "KalkulatorBackend\KalkulatorBackend.csproj", "{F30434AC-5FF8-4A24-8185-99737E06AA30}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{F5FCD5F7-1A47-4548-A720-E7516462D3A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5FCD5F7-1A47-4548-A720-E7516462D3A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5FCD5F7-1A47-4548-A720-E7516462D3A5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{23193DA3-4032-40F1-BD9A-C72A4181B97E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{23193DA3-4032-40F1-BD9A-C72A4181B97E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{23193DA3-4032-40F1-BD9A-C72A4181B97E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{23193DA3-4032-40F1-BD9A-C72A4181B97E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F30434AC-5FF8-4A24-8185-99737E06AA30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F30434AC-5FF8-4A24-8185-99737E06AA30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F30434AC-5FF8-4A24-8185-99737E06AA30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F30434AC-5FF8-4A24-8185-99737E06AA30}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

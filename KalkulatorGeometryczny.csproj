@@ -6,4 +6,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="KalkulatorBackend\**\*.cs" />
+    <Content Remove="KalkulatorBackend\**\*" />
+    <EmbeddedResource Remove="KalkulatorBackend\**\*" />
+    <None Remove="KalkulatorBackend\**\*" />
+  </ItemGroup>
+
 </Project>

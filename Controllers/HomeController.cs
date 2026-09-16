@@ -32,7 +32,7 @@ namespace KalkulatorGeometryczny.Controllers
             );
 
             var response = await _httpClient.PostAsync(
-                "https://localhost:7178/api/Kalkulator/oblicz",
+                "https://kalkulator-backend-mateusz-bgezhca7apfcb6gy.polandcentral-01.azurewebsites.net/api/Kalkulator/oblicz",
                 content
             );
 
